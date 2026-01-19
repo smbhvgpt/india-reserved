@@ -1,0 +1,2108 @@
+{
+    "jurisdictions": [
+        {
+            "id": "CENTRAL",
+            "name": "Central Government",
+            "type": "CENTRAL",
+            "region": "CENTRAL",
+            "lastUpdated": "2024-01-01",
+            "notes": "Central government vertical reservation applies to all central government services, central PSUs, and centrally-aided educational institutions. The 50% ceiling was upheld by the Supreme Court in Indra Sawhney (1992) but EWS was added via 103rd Constitutional Amendment (2019).",
+            "sourceLinks": [
+                {
+                    "title": "103rd Constitutional Amendment - EWS Reservation",
+                    "url": "https://legislative.gov.in/constitution-one-hundred-and-third-amendment-act-2019"
+                },
+                {
+                    "title": "Indra Sawhney vs Union of India (1992)",
+                    "url": "https://indiankanoon.org/doc/1363234/"
+                }
+            ]
+        },
+        {
+            "id": "ANDHRA_PRADESH",
+            "name": "Andhra Pradesh",
+            "type": "STATE",
+            "region": "SOUTH",
+            "lastUpdated": "2024-06-01",
+            "notes": "Andhra Pradesh has implemented EWS quota. Total reservation exceeds 50% at approximately 60%. State has sub-categorization within OBC groups (BC-A, BC-B, BC-C, BC-D, BC-E).",
+            "sourceLinks": [
+                {
+                    "title": "AP Reservation Policy",
+                    "url": "https://apbcmahasamakhya.com/reservation-policy"
+                }
+            ]
+        },
+        {
+            "id": "ARUNACHAL_PRADESH",
+            "name": "Arunachal Pradesh",
+            "type": "STATE",
+            "region": "NORTHEAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Arunachal Pradesh has a high ST population. The state provides 80% reservation in state government jobs and educational institutions due to tribal majority population. Most of the population falls under ST category.",
+            "sourceLinks": [
+                {
+                    "title": "Arunachal Pradesh Reservation Rules",
+                    "url": "https://arunachal.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "ASSAM",
+            "name": "Assam",
+            "type": "STATE",
+            "region": "NORTHEAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Assam provides reservations in state government services and educational institutions. EWS reservation has been implemented.",
+            "sourceLinks": [
+                {
+                    "title": "Assam Reservation Policy",
+                    "url": "https://assam.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "BIHAR",
+            "name": "Bihar",
+            "type": "STATE",
+            "region": "EAST",
+            "lastUpdated": "2024-06-01",
+            "notes": "Bihar's current effective reservation is 57% (SC 16%, ST 1%, OBC 30% [EBC 18% + BC 12%], EWS 10%). The baseline reservation (excluding EWS) is 47%, which adheres to the 50% cap. In 2023, the state passed a bill to increase this to 65% (75% with EWS), but the Patna High Court struck it down in June 2024. An appeal is pending before the Supreme Court.",
+            "legalStatus": "UNDER_CHALLENGE",
+            "legalNotes": "65% proposal struck down by Patna HC (June 2024). SC appeal pending. Current status quo (57% Total) remains effective.",
+            "sourceLinks": [
+                {
+                    "title": "Bihar Reservation Amendment Act 2023",
+                    "url": "https://state.bihar.gov.in"
+                },
+                {
+                    "title": "Patna HC Judgment (June 2024)",
+                    "url": "https://patnahighcourt.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "CHHATTISGARH",
+            "name": "Chhattisgarh",
+            "type": "STATE",
+            "region": "CENTRAL_INDIA",
+            "lastUpdated": "2024-01-01",
+            "notes": "Chhattisgarh provides 58% total reservation in state services. The state has a significant tribal population.",
+            "sourceLinks": [
+                {
+                    "title": "Chhattisgarh Reservation Policy",
+                    "url": "https://cg.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "GOA",
+            "name": "Goa",
+            "type": "STATE",
+            "region": "WEST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Goa has lower OBC reservation compared to other states. EWS quota has been implemented.",
+            "sourceLinks": [
+                {
+                    "title": "Goa Reservation Policy",
+                    "url": "https://goa.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "GUJARAT",
+            "name": "Gujarat",
+            "type": "STATE",
+            "region": "WEST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Gujarat provides 49.5% reservation keeping within 50% ceiling. EWS quota has been added over and above the 50% limit as per the Supreme Court ruling.",
+            "sourceLinks": [
+                {
+                    "title": "Gujarat Reservation Rules",
+                    "url": "https://gujaratindia.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "HARYANA",
+            "name": "Haryana",
+            "type": "STATE",
+            "region": "NORTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Haryana provides reservation in state government jobs. The Jat community reservation under OBC has been a subject of legal disputes.",
+            "sourceLinks": [
+                {
+                    "title": "Haryana Reservation Policy",
+                    "url": "https://haryana.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "HIMACHAL_PRADESH",
+            "name": "Himachal Pradesh",
+            "type": "STATE",
+            "region": "NORTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Himachal Pradesh provides reservations within the 50% limit. EWS quota has been implemented.",
+            "sourceLinks": [
+                {
+                    "title": "HP Reservation Rules",
+                    "url": "https://himachal.nic.in"
+                }
+            ]
+        },
+        {
+            "id": "JHARKHAND",
+            "name": "Jharkhand",
+            "type": "STATE",
+            "region": "EAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Jharkhand has a significant tribal population (26% ST). Current effective reservation is 60%. The state proposed a 77% reservation bill in 2024 but it was returned by the Governor for reconsideration.",
+            "legalStatus": "PENDING_APPROVAL",
+            "legalNotes": "77% reservation bill returned by Governor (2024). Pending presidential assent.",
+            "sourceLinks": [
+                {
+                    "title": "Jharkhand Reservation Policy",
+                    "url": "https://jharkhand.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "KARNATAKA",
+            "name": "Karnataka",
+            "type": "STATE",
+            "region": "SOUTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Karnataka provides reservation in state services and education. The state has introduced sub-categories within OBC. Total reservation is around 56%.",
+            "sourceLinks": [
+                {
+                    "title": "Karnataka Reservation Policy",
+                    "url": "https://karnataka.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "KERALA",
+            "name": "Kerala",
+            "type": "STATE",
+            "region": "SOUTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Kerala provides community-based reservation in state services. Reservation structure differs from other states with SEBC (Socially and Educationally Backward Classes).",
+            "sourceLinks": [
+                {
+                    "title": "Kerala Reservation Rules",
+                    "url": "https://kerala.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "MADHYA_PRADESH",
+            "name": "Madhya Pradesh",
+            "type": "STATE",
+            "region": "CENTRAL_INDIA",
+            "lastUpdated": "2024-01-01",
+            "notes": "Madhya Pradesh provides 63% total reservation in state services including EWS. The state has a significant tribal population.",
+            "sourceLinks": [
+                {
+                    "title": "MP Reservation Policy",
+                    "url": "https://mp.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "MAHARASHTRA",
+            "name": "Maharashtra",
+            "type": "STATE",
+            "region": "WEST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Maharashtra provides 52% reservation in education and employment. Maratha reservation has been a significant political issue with multiple legal challenges.",
+            "sourceLinks": [
+                {
+                    "title": "Maharashtra Reservation Rules",
+                    "url": "https://maharashtra.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "MANIPUR",
+            "name": "Manipur",
+            "type": "STATE",
+            "region": "NORTHEAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Manipur provides reservation based on its tribal and OBC population composition. The state has unique demographic characteristics.",
+            "sourceLinks": [
+                {
+                    "title": "Manipur Reservation Policy",
+                    "url": "https://manipur.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "MEGHALAYA",
+            "name": "Meghalaya",
+            "type": "STATE",
+            "region": "NORTHEAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Meghalaya has a tribal majority population (over 86% ST). State provides 80% reservation in government jobs and educational institutions.",
+            "sourceLinks": [
+                {
+                    "title": "Meghalaya Reservation Policy",
+                    "url": "https://meghalaya.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "MIZORAM",
+            "name": "Mizoram",
+            "type": "STATE",
+            "region": "NORTHEAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Mizoram has over 94% ST population. The state provides 80% reservation for STs in government jobs.",
+            "sourceLinks": [
+                {
+                    "title": "Mizoram Reservation Policy",
+                    "url": "https://mizoram.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "NAGALAND",
+            "name": "Nagaland",
+            "type": "STATE",
+            "region": "NORTHEAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Nagaland has a tribal majority (over 86% ST). The state provides 80% reservation for tribal communities in government positions.",
+            "sourceLinks": [
+                {
+                    "title": "Nagaland Reservation Policy",
+                    "url": "https://nagaland.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "ODISHA",
+            "name": "Odisha",
+            "type": "STATE",
+            "region": "EAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Odisha provides reservation in state services and educational institutions. The state has significant SC and ST populations.",
+            "sourceLinks": [
+                {
+                    "title": "Odisha Reservation Policy",
+                    "url": "https://odisha.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "PUNJAB",
+            "name": "Punjab",
+            "type": "STATE",
+            "region": "NORTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Punjab has one of the highest SC populations in India. No ST reservation as there are no scheduled tribes notified in Punjab.",
+            "sourceLinks": [
+                {
+                    "title": "Punjab Reservation Rules",
+                    "url": "https://punjab.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "RAJASTHAN",
+            "name": "Rajasthan",
+            "type": "STATE",
+            "region": "NORTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Rajasthan provides 50% reservation in state services within the constitutional limit plus EWS. Sub-categorization exists within OBC.",
+            "sourceLinks": [
+                {
+                    "title": "Rajasthan Reservation Policy",
+                    "url": "https://rajasthan.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "SIKKIM",
+            "name": "Sikkim",
+            "type": "STATE",
+            "region": "NORTHEAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Sikkim provides reservation based on its unique demographic composition including Bhutia-Lepcha communities.",
+            "sourceLinks": [
+                {
+                    "title": "Sikkim Reservation Policy",
+                    "url": "https://sikkim.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "TAMIL_NADU",
+            "name": "Tamil Nadu",
+            "type": "STATE",
+            "region": "SOUTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Tamil Nadu has 69% reservation (the highest in India) protected under the 9th Schedule of the Constitution. Does not implement EWS reservation for state services.",
+            "sourceLinks": [
+                {
+                    "title": "Tamil Nadu Backward Classes Act",
+                    "url": "https://tn.gov.in"
+                },
+                {
+                    "title": "9th Schedule Protection",
+                    "url": "https://legislative.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "TELANGANA",
+            "name": "Telangana",
+            "type": "STATE",
+            "region": "SOUTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Telangana inherited Andhra Pradesh's reservation structure and provides around 62% reservation in state services. EWS has been implemented.",
+            "sourceLinks": [
+                {
+                    "title": "Telangana Reservation Policy",
+                    "url": "https://telangana.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "TRIPURA",
+            "name": "Tripura",
+            "type": "STATE",
+            "region": "NORTHEAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "Tripura provides reservation based on its tribal population. The state has autonomous district councils for tribal areas.",
+            "sourceLinks": [
+                {
+                    "title": "Tripura Reservation Policy",
+                    "url": "https://tripura.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "UTTAR_PRADESH",
+            "name": "Uttar Pradesh",
+            "type": "STATE",
+            "region": "NORTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Uttar Pradesh provides 50% reservation plus EWS in state services. The state has a large OBC population.",
+            "sourceLinks": [
+                {
+                    "title": "UP Reservation Rules",
+                    "url": "https://up.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "UTTARAKHAND",
+            "name": "Uttarakhand",
+            "type": "STATE",
+            "region": "NORTH",
+            "lastUpdated": "2024-01-01",
+            "notes": "Uttarakhand provides reservation within 50% limit plus EWS. The state was carved out from Uttar Pradesh in 2000.",
+            "sourceLinks": [
+                {
+                    "title": "Uttarakhand Reservation Policy",
+                    "url": "https://uk.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "WEST_BENGAL",
+            "name": "West Bengal",
+            "type": "STATE",
+            "region": "EAST",
+            "lastUpdated": "2024-01-01",
+            "notes": "West Bengal provides reservation in state services. OBC reservation includes OBC-A and OBC-B sub-categories.",
+            "sourceLinks": [
+                {
+                    "title": "West Bengal Reservation Rules",
+                    "url": "https://wb.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "ANDAMAN_NICOBAR",
+            "name": "Andaman and Nicobar Islands",
+            "type": "UT",
+            "region": "UT",
+            "lastUpdated": "2024-01-01",
+            "notes": "As a Union Territory, follows Central government reservation norms with some local variations for tribal populations.",
+            "sourceLinks": [
+                {
+                    "title": "A&N Islands Administration",
+                    "url": "https://andaman.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "CHANDIGARH",
+            "name": "Chandigarh",
+            "type": "UT",
+            "region": "UT",
+            "lastUpdated": "2024-01-01",
+            "notes": "As a Union Territory, follows Central government reservation norms for UT administration posts.",
+            "sourceLinks": [
+                {
+                    "title": "Chandigarh Administration",
+                    "url": "https://chandigarh.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "DADRA_NAGAR_HAVELI_DAMAN_DIU",
+            "name": "Dadra and Nagar Haveli and Daman and Diu",
+            "type": "UT",
+            "region": "UT",
+            "lastUpdated": "2024-01-01",
+            "notes": "Merged UT (2020). Has significant ST population especially in Dadra and Nagar Haveli region.",
+            "sourceLinks": [
+                {
+                    "title": "DNH&DD Administration",
+                    "url": "https://ddd.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "DELHI",
+            "name": "Delhi",
+            "type": "UT",
+            "region": "UT",
+            "lastUpdated": "2024-01-01",
+            "notes": "National Capital Territory with special status. Follows central norms with Delhi-specific OBC lists.",
+            "sourceLinks": [
+                {
+                    "title": "Delhi Government Reservation Policy",
+                    "url": "https://delhi.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "JAMMU_KASHMIR",
+            "name": "Jammu and Kashmir",
+            "type": "UT",
+            "region": "UT",
+            "lastUpdated": "2024-06-01",
+            "notes": "Post abrogation of Article 370 (2019), J&K has its own reservation policy. In 2024, ST reservation was increased from 10% to 20% with the addition of Pahari-speaking people and Paddari tribe. OBC reservation is 8% (different from central norms).",
+            "sourceLinks": [
+                {
+                    "title": "J&K Reservation Rules",
+                    "url": "https://jk.gov.in"
+                },
+                {
+                    "title": "ST Amendment Order 2024",
+                    "url": "https://tribal.nic.in"
+                }
+            ]
+        },
+        {
+            "id": "LADAKH",
+            "name": "Ladakh",
+            "type": "UT",
+            "region": "UT",
+            "lastUpdated": "2025-01-01",
+            "notes": "Ladakh (UT since 2019) has one of the highest reservation policies in India. The 2025 Amendment provides 85% total reservation: 80% ST, 1% SC, 4% for ALC/LoC area residents. Plus 10% EWS = 95% total. Population is predominantly tribal (Ladakhi Buddhists recognized as ST).",
+            "sourceLinks": [
+                {
+                    "title": "Ladakh Administration",
+                    "url": "https://ladakh.gov.in"
+                },
+                {
+                    "title": "Ladakh Reservation Amendment 2025",
+                    "url": "https://tribal.nic.in"
+                }
+            ]
+        },
+        {
+            "id": "LAKSHADWEEP",
+            "name": "Lakshadweep",
+            "type": "UT",
+            "region": "UT",
+            "lastUpdated": "2024-01-01",
+            "notes": "Almost 100% ST population. Follows central norms with special provisions for the indigenous population.",
+            "sourceLinks": [
+                {
+                    "title": "Lakshadweep Administration",
+                    "url": "https://lakshadweep.gov.in"
+                }
+            ]
+        },
+        {
+            "id": "PUDUCHERRY",
+            "name": "Puducherry",
+            "type": "UT",
+            "region": "UT",
+            "lastUpdated": "2024-01-01",
+            "notes": "UT with legislature. Has its own reservation structure similar to central norms.",
+            "sourceLinks": [
+                {
+                    "title": "Puducherry Reservation Policy",
+                    "url": "https://py.gov.in"
+                }
+            ]
+        }
+    ],
+    "verticalReservationBlocks": [
+        {
+            "jurisdictionId": "CENTRAL",
+            "context": "CENTRAL_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 15,
+                    "populationPercent": 16.6
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 7.5,
+                    "populationPercent": 8.6
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 27,
+                    "populationPercent": 41.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 40.5,
+                    "populationPercent": 33.8
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "ANDHRA_PRADESH",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 15,
+                    "populationPercent": 17.1
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 6,
+                    "populationPercent": 7.0
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 29,
+                    "populationPercent": 48.0,
+                    "subCategories": [
+                        {
+                            "code": "BC_A",
+                            "displayName": "Backward Class A",
+                            "reservationPercent": 7,
+                            "description": "Includes 21 communities"
+                        },
+                        {
+                            "code": "BC_B",
+                            "displayName": "Backward Class B",
+                            "reservationPercent": 10,
+                            "description": "Includes Yadava, Golla and 15 other communities"
+                        },
+                        {
+                            "code": "BC_C",
+                            "displayName": "Backward Class C",
+                            "reservationPercent": 1,
+                            "description": "Converted Christians from SC communities"
+                        },
+                        {
+                            "code": "BC_D",
+                            "displayName": "Backward Class D",
+                            "reservationPercent": 7,
+                            "description": "Includes 35 communities"
+                        },
+                        {
+                            "code": "BC_E",
+                            "displayName": "Backward Class E",
+                            "reservationPercent": 4,
+                            "description": "Muslim communities"
+                        }
+                    ]
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 40,
+                    "populationPercent": 27.9
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "ARUNACHAL_PRADESH",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 0.6
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 80,
+                    "populationPercent": 68.8
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 3.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 0,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 20,
+                    "populationPercent": 27.6
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "ASSAM",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 7,
+                    "populationPercent": 7.2
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 15,
+                    "populationPercent": 12.4,
+                    "subCategories": [
+                        {
+                            "code": "ST_PLAINS",
+                            "displayName": "ST (Plains)",
+                            "reservationPercent": 10,
+                            "description": "Tribes inhabiting plains: Bodo, Rabha, Mising, Deori, etc."
+                        },
+                        {
+                            "code": "ST_HILLS",
+                            "displayName": "ST (Hills)",
+                            "reservationPercent": 5,
+                            "description": "Tribes in autonomous hill districts: Karbi, Dimasa, etc."
+                        }
+                    ]
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 27,
+                    "populationPercent": 30.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 41,
+                    "populationPercent": 50.4
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "BIHAR",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 16,
+                    "populationPercent": 15.9
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 1,
+                    "populationPercent": 1.3
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 30,
+                    "populationPercent": 51.0,
+                    "subCategories": [
+                        {
+                            "code": "EBC",
+                            "displayName": "Extremely Backward Classes (EBC)",
+                            "reservationPercent": 18,
+                            "populationPercent": 36.0,
+                            "description": "Includes 108+ economically weaker backward castes"
+                        },
+                        {
+                            "code": "BC",
+                            "displayName": "Backward Classes (BC)",
+                            "reservationPercent": 12,
+                            "populationPercent": 15.0,
+                            "description": "Includes Yadavs, Kurmis, Koeris and other backward castes"
+                        }
+                    ]
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 43,
+                    "populationPercent": 31.8
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "CHHATTISGARH",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 13,
+                    "populationPercent": 12.8
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 32,
+                    "populationPercent": 30.6
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 14,
+                    "populationPercent": 45.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 31,
+                    "populationPercent": 11.6
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "GOA",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 2,
+                    "populationPercent": 1.7
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 12,
+                    "populationPercent": 10.2
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 27,
+                    "populationPercent": 25.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 49,
+                    "populationPercent": 63.1
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "GUJARAT",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 7,
+                    "populationPercent": 6.7
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 15,
+                    "populationPercent": 14.8
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 27,
+                    "populationPercent": 39.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 41,
+                    "populationPercent": 39.5
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "HARYANA",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 20,
+                    "populationPercent": 20.2,
+                    "subCategories": [
+                        {
+                            "code": "DSC",
+                            "displayName": "Deprived Scheduled Castes (DSC)",
+                            "reservationPercent": 10,
+                            "description": "36 most backward SC castes"
+                        },
+                        {
+                            "code": "OSC",
+                            "displayName": "Other Scheduled Castes (OSC)",
+                            "reservationPercent": 10,
+                            "description": "Chamar, Jatav, Mochi, Ravidasi and other SCs"
+                        }
+                    ]
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 0,
+                    "populationPercent": 0
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 27,
+                    "populationPercent": 28.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 43,
+                    "populationPercent": 51.8
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "HIMACHAL_PRADESH",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 25,
+                    "populationPercent": 25.2
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 5,
+                    "populationPercent": 5.7
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 20,
+                    "populationPercent": 22.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 40,
+                    "populationPercent": 47.1
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "JHARKHAND",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 10,
+                    "populationPercent": 11.8
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 26,
+                    "populationPercent": 26.2
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 14,
+                    "populationPercent": 40.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 38,
+                    "populationPercent": 22.0
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "KARNATAKA",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 17,
+                    "populationPercent": 17.1
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 7,
+                    "populationPercent": 7.0
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 32,
+                    "populationPercent": 52.0,
+                    "subCategories": [
+                        {
+                            "code": "CAT_1",
+                            "displayName": "Category 1",
+                            "reservationPercent": 4,
+                            "description": "Most backward including Nayinda, Besta"
+                        },
+                        {
+                            "code": "CAT_2A",
+                            "displayName": "Category 2A",
+                            "reservationPercent": 15,
+                            "description": "Includes Vokkaliga, Kuruba, Idiga"
+                        },
+                        {
+                            "code": "CAT_2B",
+                            "displayName": "Category 2B",
+                            "reservationPercent": 4,
+                            "description": "Muslim OBCs"
+                        },
+                        {
+                            "code": "CAT_3A",
+                            "displayName": "Category 3A",
+                            "reservationPercent": 4,
+                            "description": "Lingayat community groups"
+                        },
+                        {
+                            "code": "CAT_3B",
+                            "displayName": "Category 3B",
+                            "reservationPercent": 5,
+                            "description": "Includes Maratha, Brahmin converts"
+                        }
+                    ]
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 34,
+                    "populationPercent": 23.9
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "KERALA",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 10,
+                    "populationPercent": 9.1
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 2,
+                    "populationPercent": 1.5
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "SEBC (Socially & Educationally Backward Classes)",
+                    "reservationPercent": 40,
+                    "populationPercent": 52.0,
+                    "subCategories": [
+                        {
+                            "code": "EZ",
+                            "displayName": "Ezhava",
+                            "reservationPercent": 9,
+                            "description": "Largest SEBC community"
+                        },
+                        {
+                            "code": "MU",
+                            "displayName": "Muslim",
+                            "reservationPercent": 8,
+                            "description": "Muslim OBC communities"
+                        },
+                        {
+                            "code": "BH",
+                            "displayName": "Other Backward Hindu",
+                            "reservationPercent": 3,
+                            "description": "Various Hindu backward communities"
+                        },
+                        {
+                            "code": "LA",
+                            "displayName": "Latin Catholic & Anglo Indian",
+                            "reservationPercent": 3,
+                            "description": "LC/AI Christian communities"
+                        },
+                        {
+                            "code": "DV_VK_KN",
+                            "displayName": "Dheevara, Viswakarma, Kusavan",
+                            "reservationPercent": 5,
+                            "description": "DV (2%), VK (2%), KN (1%)"
+                        },
+                        {
+                            "code": "OTHERS_SEBC",
+                            "displayName": "Other SEBC Communities",
+                            "reservationPercent": 12,
+                            "description": "88 communities in SEBC list"
+                        }
+                    ]
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 38,
+                    "populationPercent": 37.4
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "MADHYA_PRADESH",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 16,
+                    "populationPercent": 15.6
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 20,
+                    "populationPercent": 21.1
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 14,
+                    "populationPercent": 41.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 40,
+                    "populationPercent": 22.3
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "MAHARASHTRA",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 13,
+                    "populationPercent": 11.8
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 7,
+                    "populationPercent": 9.4
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 19,
+                    "populationPercent": 32.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 51,
+                    "populationPercent": 46.8
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "MANIPUR",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 2,
+                    "populationPercent": 3.9
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 31,
+                    "populationPercent": 40.9
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 17,
+                    "populationPercent": 28.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 40,
+                    "populationPercent": 27.2
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "MEGHALAYA",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 2,
+                    "populationPercent": 0.6
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 80,
+                    "populationPercent": 86.1
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 3.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 0,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 18,
+                    "populationPercent": 10.3
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "MIZORAM",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 0.1
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 80,
+                    "populationPercent": 94.4
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 2.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 0,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 20,
+                    "populationPercent": 3.5
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "NAGALAND",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 0
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 80,
+                    "populationPercent": 86.5
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 2.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 0,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 20,
+                    "populationPercent": 11.5
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "ODISHA",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 17,
+                    "populationPercent": 17.1
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 23,
+                    "populationPercent": 22.8
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 11,
+                    "populationPercent": 40.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 39,
+                    "populationPercent": 20.1
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "PUNJAB",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 25,
+                    "populationPercent": 31.9
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 0,
+                    "populationPercent": 0
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 12,
+                    "populationPercent": 25.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 53,
+                    "populationPercent": 43.1
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "RAJASTHAN",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 16,
+                    "populationPercent": 17.8
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 12,
+                    "populationPercent": 13.4
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 21,
+                    "populationPercent": 36.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 41,
+                    "populationPercent": 32.8
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "SIKKIM",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 7,
+                    "populationPercent": 5.0
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 25,
+                    "populationPercent": 33.8
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 24,
+                    "populationPercent": 28.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 34,
+                    "populationPercent": 33.2
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "TAMIL_NADU",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 18,
+                    "populationPercent": 20.0
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 1,
+                    "populationPercent": 1.1
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 50,
+                    "populationPercent": 68.0,
+                    "subCategories": [
+                        {
+                            "code": "BC",
+                            "displayName": "Backward Classes (BC)",
+                            "reservationPercent": 30,
+                            "populationPercent": null,
+                            "description": "Includes 146 communities",
+                            "subCategories": [
+                                {
+                                    "code": "BC_GENERAL",
+                                    "displayName": "BC (General)",
+                                    "reservationPercent": 26.5
+                                },
+                                {
+                                    "code": "BC_MUSLIM",
+                                    "displayName": "BC (Muslims)",
+                                    "reservationPercent": 3.5
+                                }
+                            ]
+                        },
+                        {
+                            "code": "MBC_DNC",
+                            "displayName": "MBC & Denotified Communities",
+                            "reservationPercent": 20,
+                            "populationPercent": null,
+                            "description": "Includes Vanniyars and 106+ other castes"
+                        }
+                    ]
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 0,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 31,
+                    "populationPercent": 10.9
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "TELANGANA",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 15,
+                    "populationPercent": 15.5
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 10,
+                    "populationPercent": 9.3
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 29,
+                    "populationPercent": 48.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 36,
+                    "populationPercent": 27.2
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "TRIPURA",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 17,
+                    "populationPercent": 17.8
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 31,
+                    "populationPercent": 31.8
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 2,
+                    "populationPercent": 10.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 40,
+                    "populationPercent": 40.4
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "UTTAR_PRADESH",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 21,
+                    "populationPercent": 21.0
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 2,
+                    "populationPercent": 0.6
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 27,
+                    "populationPercent": 45.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 40,
+                    "populationPercent": 33.4
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "UTTARAKHAND",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 19,
+                    "populationPercent": 18.8
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 4,
+                    "populationPercent": 2.9
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 14,
+                    "populationPercent": 18.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 53,
+                    "populationPercent": 60.3
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "WEST_BENGAL",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 22,
+                    "populationPercent": 23.5
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 6,
+                    "populationPercent": 5.8
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 17,
+                    "populationPercent": 30.0,
+                    "subCategories": [
+                        {
+                            "code": "OBC_A",
+                            "displayName": "OBC-A (More Backward)",
+                            "reservationPercent": 10,
+                            "description": "Most backward OBC communities"
+                        },
+                        {
+                            "code": "OBC_B",
+                            "displayName": "OBC-B (Backward)",
+                            "reservationPercent": 7,
+                            "description": "Other backward communities"
+                        }
+                    ]
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 45,
+                    "populationPercent": 40.7
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "ANDAMAN_NICOBAR",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 0
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 10,
+                    "populationPercent": 7.5
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 27,
+                    "populationPercent": 30.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 53,
+                    "populationPercent": 62.5
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "CHANDIGARH",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 15,
+                    "populationPercent": 18.9
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 0,
+                    "populationPercent": 0
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 27,
+                    "populationPercent": 22.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 48,
+                    "populationPercent": 59.1
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "DADRA_NAGAR_HAVELI_DAMAN_DIU",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 2,
+                    "populationPercent": 2.5
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 52,
+                    "populationPercent": 51.9
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 14,
+                    "populationPercent": 15.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 22,
+                    "populationPercent": 30.6
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "DELHI",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 15,
+                    "populationPercent": 16.8
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 7.5,
+                    "populationPercent": 0
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 27,
+                    "populationPercent": 25.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 40.5,
+                    "populationPercent": 58.2
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "JAMMU_KASHMIR",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 8,
+                    "populationPercent": 7.4
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 20,
+                    "populationPercent": 11.9,
+                    "subCategories": [
+                        {
+                            "code": "ST_1",
+                            "displayName": "ST-1 (Original STs)",
+                            "reservationPercent": 10,
+                            "description": "Gujjar, Bakerwal, Gaddi, Sippi and other original STs"
+                        },
+                        {
+                            "code": "ST_2",
+                            "displayName": "ST-2 (Pahari & Paddari)",
+                            "reservationPercent": 10,
+                            "description": "Pahari-speaking people and Paddari tribe added in 2024"
+                        }
+                    ]
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 8,
+                    "populationPercent": 32.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 54,
+                    "populationPercent": 48.7
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "LADAKH",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 1,
+                    "populationPercent": 0.5
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 80,
+                    "populationPercent": 66.8
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "ALC/LoC Residents",
+                    "reservationPercent": 4,
+                    "populationPercent": 10.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 5,
+                    "populationPercent": 22.7
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "LAKSHADWEEP",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 0
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 100,
+                    "populationPercent": 94.8
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 0,
+                    "populationPercent": 2.0
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 0,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 0,
+                    "populationPercent": 3.2
+                }
+            ]
+        },
+        {
+            "jurisdictionId": "PUDUCHERRY",
+            "context": "STATE_SERVICES",
+            "categories": [
+                {
+                    "code": "SC",
+                    "displayName": "Scheduled Castes (SC)",
+                    "reservationPercent": 16,
+                    "populationPercent": 15.7
+                },
+                {
+                    "code": "ST",
+                    "displayName": "Scheduled Tribes (ST)",
+                    "reservationPercent": 0,
+                    "populationPercent": 0
+                },
+                {
+                    "code": "OBC",
+                    "displayName": "Other Backward Classes (OBC)",
+                    "reservationPercent": 34,
+                    "populationPercent": 45.0,
+                    "subCategories": [
+                        {
+                            "code": "MBC",
+                            "displayName": "Most Backward Classes (MBC)",
+                            "reservationPercent": 15,
+                            "description": "Includes Vanniyar, Naidu, and other most backward communities"
+                        },
+                        {
+                            "code": "BCM",
+                            "displayName": "Backward Class Muslims (BCM)",
+                            "reservationPercent": 3.5,
+                            "description": "Muslim OBC communities"
+                        },
+                        {
+                            "code": "BC",
+                            "displayName": "Backward Classes (BC)",
+                            "reservationPercent": 12,
+                            "description": "Other backward class communities"
+                        },
+                        {
+                            "code": "EBC",
+                            "displayName": "Extremely Backward Classes (EBC)",
+                            "reservationPercent": 3.5,
+                            "description": "Economically weakest among backward classes"
+                        }
+                    ]
+                },
+                {
+                    "code": "EWS",
+                    "displayName": "Economically Weaker Sections (EWS)",
+                    "reservationPercent": 10,
+                    "populationPercent": null
+                },
+                {
+                    "code": "OTHERS",
+                    "displayName": "Others / Unreserved",
+                    "reservationPercent": 40,
+                    "populationPercent": 39.3
+                }
+            ]
+        }
+    ]
+}
