@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# India Reservation Map 🇮🇳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive web application (dashboard) to visualize and analyze reservation (quota) policies across different states in India.
 
-Currently, two official plugins are available:
+## 🚀 Features
+- **Interactive Map**: Click on any state to view its specific reservation details.
+- **Detailed Breakdowns**: View percentages for SC, ST, OBC, EWS, and other specific categories.
+- **Legal Status Indicators**: Automatically highlights states that have breached the 50% reservation cap (Indra Sawhney judgement) and notes pending legal outcomes.
+- **Responsive Design**: Works on Desktop and Mobile.
+- **Search Functionality**: Quickly find specific states or union territories.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack
+- **Framework**: React (v19)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Build Tool**: Vite
+- **Map Visualization**: React Simple Maps (TopoJSON/GeoJSON)
 
-## React Compiler
+## 🏃‍♂️ How to Run Locally
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/smbhvgpt/india-reserved.git
+    ```
+2.  **Install dependencies**
+    ```bash
+    cd india-reserved
+    npm install
+    ```
+3.  **Start the development server**
+    ```bash
+    npm run dev
+    ```
 
-## Expanding the ESLint configuration
+## 🌐 Deployment
+This project is a **Static Web App**. It can be hosted for free on specific platforms or standard shared hosting.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-   **Build Command**: `npm run build`
+-   **Output Directory**: `dist/`
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Hosting on Hostinger/Apache
+If hosting on a subfolder in shared hosting, ensure you add the `.htaccess` file (included in this repo guides) to handle client-side routing.
