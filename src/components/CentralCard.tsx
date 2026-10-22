@@ -1,6 +1,6 @@
 import type { CategoryCode } from '../types';
 import { CATEGORY_COLORS } from '../types';
-import { getCentralCategories, calculateTotalReservation } from '../utils/dataHelpers';
+import { getCentralCategories, calculateTotalReservation, calculateBaseReservation } from '../utils/dataHelpers';
 import { StackedBar } from './ReservationTable';
 
 interface CentralCardProps {
@@ -11,6 +11,7 @@ interface CentralCardProps {
 export function CentralCard({ compact = false, onClick }: CentralCardProps) {
     const centralCategories = getCentralCategories();
     const totalReservation = calculateTotalReservation(centralCategories);
+    const baseReservation = calculateBaseReservation(centralCategories);
 
     if (compact) {
         return (
@@ -25,7 +26,9 @@ export function CentralCard({ compact = false, onClick }: CentralCardProps) {
                 <div className="text-2xl font-bold text-white mb-1">
                     {totalReservation.toFixed(1)}%
                 </div>
-                <div className="text-xs text-gray-400 mb-3">Total Vertical Reservation</div>
+                <div className="text-xs text-gray-400 mb-3">
+                    Total Vertical Reservation · Excl. EWS: {baseReservation.toFixed(1)}%
+                </div>
                 <StackedBar categories={centralCategories} />
             </div>
         );

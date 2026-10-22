@@ -2,7 +2,7 @@
 
 _Audit date: 22 Oct 2026. Companion document: [`DATA_AUDIT.md`](./DATA_AUDIT.md) (state-by-state data verification with sources)._
 
-> **Status (22 Oct 2026):** Phase 0 and the 50% ceiling fix (L1, L2) are done; the dead files are also removed from the live `gh-pages` branch. The map is not lazy-loaded as planned: at ~30 KB it ships as a separately cached file that `react-simple-maps` fetches, which meets the size target. Next: Phase 1 (data model + corrections).
+> **Status (22 Oct 2026):** Phase 0 and the 50% ceiling fix (L1, L2) are done, and the dead files are removed from the live `gh-pages` branch (the new build itself is not deployed yet). Deviations: the map is bundled rather than lazy-loaded — at 19 KB gzipped a separate fetch only added a failure mode; B8 has no link-preview image yet (`og:image` needs an absolute URL). The UI now calls 50% a *general rule* with exceptions, rather than flagging states as breaching it. Next: Phase 1 (data model + corrections).
 
 ## 1. What the project is today
 
@@ -108,6 +108,7 @@ Ordered so each phase is shippable on its own. Rough effort is for one developer
    - Variants per block for rates that differ by post class or region (Himachal Class I/II vs III/IV, Haryana Group A/B vs C/D, DNH vs Daman & Diu, UT all-India vs local posts) — see `DATA_AUDIT.md` §3.
    - Shared and nested quotas (Meghalaya's 5% shared by SCs and other STs; Nagaland's Backward Tribes inside ST).
 2. **Apply the corrections** in `DATA_AUDIT.md`, highest-impact first (wrong totals → missing categories → legal status → notes text → sources). Work through its §6 re-check list first — Karnataka and MP changed in October 2026.
+   - Rewrite notes that contradict the new 50%-rule wording: Andhra Pradesh ("exceeds 50% at approximately 60%" — it is 50% + 10% EWS), Madhya Pradesh, Maharashtra, Chhattisgarh, Karnataka, Telangana, Gujarat, Rajasthan, Ladakh (ALC stored as OBC).
    - Rule for contributors: a state's figures must come from *that state's* instrument (Act, GO, PSC advertisement), never from the DoPT table for central posts — except for UTs without a legislature, where that table *is* the rule.
 3. **Validation as a test**: zero-tolerance sums, sub-categories = parent, every block has ≥1 specific source and an `asOf` date; run in CI. Add a JSON Schema for the data file.
 4. Single source of truth for Central figures. (L4)

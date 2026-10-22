@@ -7,7 +7,7 @@ An interactive web application (dashboard) to visualize and analyze reservation 
 ## 🚀 Features
 - **Interactive Map**: Click on any state to view its specific reservation details.
 - **Detailed Breakdowns**: View percentages for SC, ST, OBC, EWS, and other specific categories.
-- **Legal Status Indicators**: Flags States/UTs whose SC + ST + OBC reservation exceeds the 50% ceiling (Indra Sawhney, 1992). EWS is shown separately because the Supreme Court held it falls outside that ceiling (Janhit Abhiyan, 2022). Pending legal challenges are noted.
+- **50% Rule Context**: Shows whether each State/UT is within or above the 50% general rule for SC, ST and OBC-type quotas (Indra Sawhney, 1992 — which allows exceptions in extraordinary situations). EWS is shown separately because the Supreme Court held it falls outside that limit (Janhit Abhiyan, 2022). Pending legal challenges are noted.
 - **Responsive Design**: Works on Desktop and Mobile.
 - **Search Functionality**: Quickly find specific states or union territories.
 
@@ -44,7 +44,7 @@ An interactive web application (dashboard) to visualize and analyze reservation 
 | `npm run build:map` | Regenerate `src/data/india-states.topo.json` from the source map in `scripts/map-source/` (needs network once, for a pinned mapshaper) |
 
 ## 🗺️ Map
-State boundaries come from [simplemaps](https://simplemaps.com) (`scripts/map-source/simplemaps_in.json`) and follow India's official boundary depiction (Jammu & Kashmir includes PoK; Ladakh includes Gilgit-Baltistan and Aksai Chin) — keep this property if the map source is ever replaced. `npm run build:map` simplifies them to a ~30 KB TopoJSON file and tags each shape with its jurisdiction id; it fails if a State/UT in the data has no shape on the map.
+State boundaries come from [simplemaps](https://simplemaps.com) (`scripts/map-source/simplemaps_in.json`) and follow India's official boundary depiction (Jammu & Kashmir includes PoK; Ladakh includes Gilgit-Baltistan and Aksai Chin) — keep this property if the map source is ever replaced. `npm run build:map` simplifies them to a ~48 KB TopoJSON file (19 KB gzipped) and tags each shape with its jurisdiction id. It fails if a State/UT in the data has no shape on the map, or if simplification would drop any island or enclave (e.g. Puducherry's Mahe and Yanam, Lakshadweep's islands).
 
 ## 🌐 Deployment
 This project is a **Static Web App**.

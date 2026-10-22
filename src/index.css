@@ -67,6 +67,10 @@ body {
   stroke: #1f2937;
   stroke-width: 0.5;
   opacity: 0.9;
+}
+
+/* No focus box on mouse click; keep a visible ring for keyboard focus */
+.map-state:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -81,6 +85,8 @@ body {
   stroke: #fff;
   stroke-width: 1.5;
   opacity: 1;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .map-state.selected {

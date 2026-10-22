@@ -5,17 +5,20 @@ import {
     Geography,
     ZoomableGroup
 } from 'react-simple-maps';
-import type { GeographyProps } from 'react-simple-maps';
+import type { GeographiesProps, GeographyProps } from 'react-simple-maps';
 import type { ReservationData } from '../types';
 import { CATEGORY_COLORS } from '../types';
 import { calculateTotalReservation, calculateBaseReservation } from '../utils/dataHelpers';
 
 // Simplified TopoJSON built by `npm run build:map`; each shape carries the
-// jurisdiction id used in reservationData.json as `properties.id`.
-import indiaMapUrl from '../data/india-states.topo.json?url';
+// jurisdiction id used in reservationData.json as `properties.id`. Bundled
+// (~19 KB gzip) rather than fetched, so the map can't fail to load on its own.
+import indiaTopology from '../data/india-states.topo.json';
 
 // The package's `Geography` type is shadowed by the component of the same name
 type MapGeography = GeographyProps['geography'];
+
+const indiaMap = indiaTopology as unknown as GeographiesProps['geography'];
 
 interface IndiaMapProps {
     data: ReservationData;
@@ -108,7 +111,7 @@ export function IndiaMap({ data, selectedState, onSelectState }: IndiaMapProps) 
                 className="w-full h-full"
             >
                 <ZoomableGroup center={[82, 22]} zoom={1}>
-                    <Geographies geography={indiaMapUrl}>
+                    <Geographies geography={indiaMap}>
                         {({ geographies }) =>
                             geographies.map((geo) => {
                                 const stateId = getJurisdictionId(geo);
@@ -148,7 +151,7 @@ export function IndiaMap({ data, selectedState, onSelectState }: IndiaMapProps) 
                     </div>
                     {tooltip.ews > 0 && (
                         <div className="text-xs text-gray-400">
-                            SC+ST+OBC {tooltip.base.toFixed(1)}% + EWS {tooltip.ews.toFixed(1)}%
+                            Excl. EWS: {tooltip.base.toFixed(1)}%
                         </div>
                     )}
                 </div>

@@ -124,7 +124,7 @@ function App() {
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-400">Above 50% ceiling (SC+ST+OBC)</span>
+                    <span className="text-gray-400">Above 50% general rule (excl. EWS)</span>
                     <span className="text-white font-medium">{aboveCeilingCount}</span>
                   </div>
                   <div className="flex justify-between">

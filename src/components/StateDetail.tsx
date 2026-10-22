@@ -86,30 +86,30 @@ export function StateDetail({ data, stateId, onClose }: StateDetailProps) {
                 )}
 
                 {/* Summary stats */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-4 mb-3">
                     <div className="text-center p-4 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/10">
                         <div className="text-3xl font-bold text-white">{totalReservation.toFixed(1)}%</div>
                         <div className="text-sm text-gray-400 mt-1">Total Reservation</div>
-                        {ewsReservation > 0 && (
-                            <div className="text-xs text-gray-400 mt-1">
-                                <div>SC+ST+OBC {baseReservation.toFixed(1)}%</div>
-                                <div>+ EWS {ewsReservation.toFixed(1)}%</div>
-                            </div>
-                        )}
-                        {exceedsCeiling && (
-                            <div
-                                className="text-xs text-yellow-400 mt-2"
-                                title="The 50% ceiling applies to SC+ST+OBC; EWS is outside it (Janhit Abhiyan v. Union of India, 2022)"
-                            >
-                                ⚠️ SC+ST+OBC exceeds 50% ceiling
-                            </div>
-                        )}
+                        <div className="text-xs text-gray-400 mt-1">
+                            <div>Excl. EWS: {baseReservation.toFixed(1)}%</div>
+                            <div>EWS: {ewsReservation.toFixed(1)}%</div>
+                        </div>
                     </div>
                     <div className="text-center p-4 rounded-xl bg-gradient-to-br from-gray-500/20 to-gray-600/20 border border-white/10">
                         <div className="text-3xl font-bold text-white">{(100 - totalReservation).toFixed(1)}%</div>
                         <div className="text-sm text-gray-400 mt-1">Unreserved</div>
                     </div>
                 </div>
+
+                {/* 50% rule context */}
+                <p className="text-xs text-gray-400 mb-6">
+                    <span className={exceedsCeiling ? 'text-amber-300 font-medium' : 'text-gray-300 font-medium'}>
+                        {exceedsCeiling ? 'Above' : 'Within'} the 50% general rule (excl. EWS).
+                    </span>{' '}
+                    The Supreme Court set 50% as a general limit on SC, ST and OBC-type quotas
+                    (Indra Sawhney, 1992), allowing exceptions in extraordinary situations;
+                    EWS falls outside it (Janhit Abhiyan, 2022).
+                </p>
 
                 {/* Stacked bar */}
                 <div className="mb-8">
