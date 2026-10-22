@@ -4,6 +4,8 @@ import {
     getJurisdictionById,
     getReservationBlock,
     calculateTotalReservation,
+    calculateBaseReservation,
+    exceedsReservationCeiling,
     getSortedCategories,
     REGION_DISPLAY_NAMES,
     getCentralReservation
@@ -35,8 +37,10 @@ export function StateDetail({ data, stateId, onClose }: StateDetailProps) {
     }
 
     const totalReservation = calculateTotalReservation(reservationBlock.categories);
+    const baseReservation = calculateBaseReservation(reservationBlock.categories);
+    const ewsReservation = totalReservation - baseReservation;
     const sortedCategories = getSortedCategories(reservationBlock.categories);
-    const exceeds50 = totalReservation > 50;
+    const exceedsCeiling = exceedsReservationCeiling(reservationBlock.categories);
 
     return (
         <div className="glass-card state-panel overflow-y-auto max-h-[90vh]">
@@ -86,8 +90,19 @@ export function StateDetail({ data, stateId, onClose }: StateDetailProps) {
                     <div className="text-center p-4 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/10">
                         <div className="text-3xl font-bold text-white">{totalReservation.toFixed(1)}%</div>
                         <div className="text-sm text-gray-400 mt-1">Total Reservation</div>
-                        {exceeds50 && (
-                            <div className="text-xs text-yellow-400 mt-2">⚠️ Exceeds 50% cap</div>
+                        {ewsReservation > 0 && (
+                            <div className="text-xs text-gray-400 mt-1">
+                                <div>SC+ST+OBC {baseReservation.toFixed(1)}%</div>
+                                <div>+ EWS {ewsReservation.toFixed(1)}%</div>
+                            </div>
+                        )}
+                        {exceedsCeiling && (
+                            <div
+                                className="text-xs text-yellow-400 mt-2"
+                                title="The 50% ceiling applies to SC+ST+OBC; EWS is outside it (Janhit Abhiyan v. Union of India, 2022)"
+                            >
+                                ⚠️ SC+ST+OBC exceeds 50% ceiling
+                            </div>
                         )}
                     </div>
                     <div className="text-center p-4 rounded-xl bg-gradient-to-br from-gray-500/20 to-gray-600/20 border border-white/10">

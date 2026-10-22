@@ -94,6 +94,8 @@ export function CentralCard({ compact = false, onClick }: CentralCardProps) {
                     This structure applies to Central Government jobs, Central PSUs, and centrally-funded educational institutions.
                     The 50% ceiling was established by the Supreme Court in <strong>Indra Sawhney v. Union of India (1992)</strong>,
                     with EWS quota (10%) added via the <strong>103rd Constitutional Amendment (2019)</strong>.
+                    The Supreme Court upheld EWS in <strong>Janhit Abhiyan v. Union of India (2022)</strong> and held that
+                    it falls outside the 50% ceiling, which applies to SC, ST and OBC reservation.
                 </p>
             </div>
 

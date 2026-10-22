@@ -2,6 +2,8 @@
 
 _Audit date: 22 Oct 2026. Companion document: [`DATA_AUDIT.md`](./DATA_AUDIT.md) (state-by-state data verification with sources)._
 
+> **Status (22 Oct 2026):** Phase 0 and the 50% ceiling fix (L1, L2) are done; the dead files are also removed from the live `gh-pages` branch. The map is not lazy-loaded as planned: at ~30 KB it ships as a separately cached file that `react-simple-maps` fetches, which meets the size target. Next: Phase 1 (data model + corrections).
+
 ## 1. What the project is today
 
 A static React 19 + TypeScript + Vite + Tailwind v4 single-page app. One screen:

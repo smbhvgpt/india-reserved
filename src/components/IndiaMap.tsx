@@ -5,61 +5,17 @@ import {
     Geography,
     ZoomableGroup
 } from 'react-simple-maps';
+import type { GeographyProps } from 'react-simple-maps';
 import type { ReservationData } from '../types';
 import { CATEGORY_COLORS } from '../types';
-import { calculateTotalReservation } from '../utils/dataHelpers';
+import { calculateTotalReservation, calculateBaseReservation } from '../utils/dataHelpers';
 
-// SimpleMaps GeoJSON - verified to have 36 regions including Telangana & Ladakh
-// Ensure this file exists at this path
-import indiaGeoJson from '../data/simplemaps_in.json';
+// Simplified TopoJSON built by `npm run build:map`; each shape carries the
+// jurisdiction id used in reservationData.json as `properties.id`.
+import indiaMapUrl from '../data/india-states.topo.json?url';
 
-// State name mapping from GeoJSON names to our IDs
-const STATE_NAME_TO_ID: Record<string, string> = {
-    "Andhra Pradesh": "ANDHRA_PRADESH",
-    "Arunachal Pradesh": "ARUNACHAL_PRADESH",
-    "Assam": "ASSAM",
-    "Bihar": "BIHAR",
-    "Chhattisgarh": "CHHATTISGARH",
-    "Goa": "GOA",
-    "Gujarat": "GUJARAT",
-    "Haryana": "HARYANA",
-    "Himachal Pradesh": "HIMACHAL_PRADESH",
-    "Jharkhand": "JHARKHAND",
-    "Karnataka": "KARNATAKA",
-    "Kerala": "KERALA",
-    "Madhya Pradesh": "MADHYA_PRADESH",
-    "Maharashtra": "MAHARASHTRA",
-    "Manipur": "MANIPUR",
-    "Meghalaya": "MEGHALAYA",
-    "Mizoram": "MIZORAM",
-    "Nagaland": "NAGALAND",
-    "Odisha": "ODISHA",
-    "Orissa": "ODISHA",
-    "Punjab": "PUNJAB",
-    "Rajasthan": "RAJASTHAN",
-    "Sikkim": "SIKKIM",
-    "Tamil Nadu": "TAMIL_NADU",
-    "Telangana": "TELANGANA",
-    "Tripura": "TRIPURA",
-    "Uttar Pradesh": "UTTAR_PRADESH",
-    "Uttarakhand": "UTTARAKHAND",
-    "Uttaranchal": "UTTARAKHAND",
-    "West Bengal": "WEST_BENGAL",
-    "Andaman and Nicobar Islands": "ANDAMAN_NICOBAR",
-    "Andaman and Nicobar": "ANDAMAN_NICOBAR",
-    "Chandigarh": "CHANDIGARH",
-    "Dadra and Nagar Haveli and Daman and Diu": "DADRA_NAGAR_HAVELI_DAMAN_DIU",
-    "Dādra and Nagar Haveli and Damān and Diu": "DADRA_NAGAR_HAVELI_DAMAN_DIU",
-    "Dadra and Nagar Haveli": "DADRA_NAGAR_HAVELI_DAMAN_DIU",
-    "Daman and Diu": "DADRA_NAGAR_HAVELI_DAMAN_DIU",
-    "Delhi": "DELHI",
-    "NCT of Delhi": "DELHI",
-    "Jammu and Kashmir": "JAMMU_KASHMIR",
-    "Ladakh": "LADAKH",
-    "Lakshadweep": "LAKSHADWEEP",
-    "Puducherry": "PUDUCHERRY",
-    "Pondicherry": "PUDUCHERRY",
-};
+// The package's `Geography` type is shadowed by the component of the same name
+type MapGeography = GeographyProps['geography'];
 
 interface IndiaMapProps {
     data: ReservationData;
@@ -67,38 +23,29 @@ interface IndiaMapProps {
     onSelectState: (stateId: string | null) => void;
 }
 
-interface TooltipInfo {
+interface ReservationSummary {
+    total: number;
+    base: number;
+    ews: number;
+}
+
+interface TooltipInfo extends ReservationSummary {
     name: string;
-    totalReservation: number;
     x: number;
     y: number;
-}
-
-interface GeoProperties {
-    name?: string;
-    NAME?: string;
-    NAME_1?: string;
-    st_nm?: string;
-    id?: string;
-}
-
-interface GeoObject {
-    rsmKey: string;
-    properties: GeoProperties;
 }
 
 // Get color based on total reservation percentage
 function getReservationColor(percent: number): string {
     if (percent >= 70) return '#ef4444'; // Red - very high
     if (percent >= 60) return '#f97316'; // Orange - high
-    if (percent >= 50) return '#eab308'; // Yellow - at 50%
+    if (percent >= 50) return '#eab308'; // Yellow
     if (percent >= 40) return '#22c55e'; // Green - moderate
     return '#3b82f6'; // Blue - lower
 }
 
-// Helper to get normalized name from any GeoJSON format
-function getGeoName(geo: GeoObject): string | undefined {
-    return geo.properties.name || geo.properties.NAME_1 || geo.properties.NAME || geo.properties.st_nm;
+function getJurisdictionId(geo: MapGeography): string | undefined {
+    return geo.properties?.id;
 }
 
 export function IndiaMap({ data, selectedState, onSelectState }: IndiaMapProps) {
@@ -106,29 +53,28 @@ export function IndiaMap({ data, selectedState, onSelectState }: IndiaMapProps) 
 
     // Create a map for quick lookup
     const reservationByState = useMemo(() => {
-        const map: Record<string, number> = {};
+        const map: Record<string, ReservationSummary> = {};
         for (const block of data.verticalReservationBlocks) {
-            map[block.jurisdictionId] = calculateTotalReservation(block.categories);
+            const total = calculateTotalReservation(block.categories);
+            const base = calculateBaseReservation(block.categories);
+            map[block.jurisdictionId] = { total, base, ews: total - base };
         }
         return map;
     }, [data]);
 
     const handleMouseEnter = (
-        geo: GeoObject,
+        geo: MapGeography,
         evt: React.MouseEvent
     ) => {
-        const geoName = getGeoName(geo);
-        if (!geoName) return;
-
-        const stateId = STATE_NAME_TO_ID[geoName];
+        const stateId = getJurisdictionId(geo);
         if (!stateId) return;
 
         const jurisdiction = data.jurisdictions.find(j => j.id === stateId);
-        const totalReservation = reservationByState[stateId] || 0;
+        const summary = reservationByState[stateId] ?? { total: 0, base: 0, ews: 0 };
 
         setTooltip({
-            name: jurisdiction?.name || geoName,
-            totalReservation,
+            name: jurisdiction?.name || geo.properties?.name || stateId,
+            ...summary,
             x: evt.clientX,
             y: evt.clientY
         });
@@ -144,11 +90,8 @@ export function IndiaMap({ data, selectedState, onSelectState }: IndiaMapProps) 
         }
     };
 
-    const handleClick = (geo: GeoObject) => {
-        const geoName = getGeoName(geo);
-        if (!geoName) return;
-
-        const stateId = STATE_NAME_TO_ID[geoName];
+    const handleClick = (geo: MapGeography) => {
+        const stateId = getJurisdictionId(geo);
         if (stateId) {
             onSelectState(stateId === selectedState ? null : stateId);
         }
@@ -165,12 +108,11 @@ export function IndiaMap({ data, selectedState, onSelectState }: IndiaMapProps) 
                 className="w-full h-full"
             >
                 <ZoomableGroup center={[82, 22]} zoom={1}>
-                    <Geographies geography={indiaGeoJson}>
-                        {({ geographies }: { geographies: GeoObject[] }) =>
-                            geographies.map((geo: GeoObject) => {
-                                const geoName = getGeoName(geo);
-                                const stateId = geoName ? STATE_NAME_TO_ID[geoName] : null;
-                                const totalReservation = stateId ? reservationByState[stateId] : 0;
+                    <Geographies geography={indiaMapUrl}>
+                        {({ geographies }) =>
+                            geographies.map((geo) => {
+                                const stateId = getJurisdictionId(geo);
+                                const summary = stateId ? reservationByState[stateId] : undefined;
                                 const isSelected = stateId === selectedState;
 
                                 return (
@@ -178,29 +120,10 @@ export function IndiaMap({ data, selectedState, onSelectState }: IndiaMapProps) 
                                         key={geo.rsmKey}
                                         geography={geo}
                                         className={`map-state ${isSelected ? 'selected' : ''}`}
-                                        style={{
-                                            default: {
-                                                fill: stateId ? getReservationColor(totalReservation) : '#374151',
-                                                stroke: '#1f2937',
-                                                strokeWidth: 0.5,
-                                                opacity: 0.9
-                                            },
-                                            hover: {
-                                                fill: stateId ? getReservationColor(totalReservation) : '#4b5563',
-                                                stroke: '#fff',
-                                                strokeWidth: 1,
-                                                opacity: 1
-                                            },
-                                            pressed: {
-                                                fill: stateId ? getReservationColor(totalReservation) : '#4b5563',
-                                                stroke: '#fff',
-                                                strokeWidth: 1.2,
-                                                opacity: 1
-                                            }
-                                        }}
-                                        onMouseEnter={(evt: React.MouseEvent<SVGPathElement>) => handleMouseEnter(geo, evt)}
+                                        fill={summary ? getReservationColor(summary.total) : '#374151'}
+                                        onMouseEnter={(evt) => handleMouseEnter(geo, evt)}
                                         onMouseLeave={handleMouseLeave}
-                                        onMouseMove={(evt: React.MouseEvent<SVGPathElement>) => handleMouseMove(evt)}
+                                        onMouseMove={handleMouseMove}
                                         onClick={() => handleClick(geo)}
                                     />
                                 );
@@ -221,15 +144,20 @@ export function IndiaMap({ data, selectedState, onSelectState }: IndiaMapProps) 
                 >
                     <div className="font-semibold text-white">{tooltip.name}</div>
                     <div className="text-sm text-gray-300">
-                        Total Reservation: <span className="font-medium text-white">{tooltip.totalReservation.toFixed(1)}%</span>
+                        Total Reservation: <span className="font-medium text-white">{tooltip.total.toFixed(1)}%</span>
                     </div>
+                    {tooltip.ews > 0 && (
+                        <div className="text-xs text-gray-400">
+                            SC+ST+OBC {tooltip.base.toFixed(1)}% + EWS {tooltip.ews.toFixed(1)}%
+                        </div>
+                    )}
                 </div>
             )}
 
             {/* Legend */}
             <div className="absolute bottom-4 left-4 glass-card p-4">
                 <div className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
-                    Total Vertical Reservation
+                    Total Reservation (incl. EWS)
                 </div>
                 <div className="flex flex-col gap-2">
                     <div className="legend-item">
@@ -242,7 +170,7 @@ export function IndiaMap({ data, selectedState, onSelectState }: IndiaMapProps) 
                     </div>
                     <div className="legend-item">
                         <div className="legend-dot" style={{ background: '#eab308' }}></div>
-                        <span>50-60% (At 50% cap)</span>
+                        <span>50-60%</span>
                     </div>
                     <div className="legend-item">
                         <div className="legend-dot" style={{ background: '#22c55e' }}></div>
