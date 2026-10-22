@@ -37,7 +37,7 @@ Everything below was reproduced (build run, app driven in headless Chromium, scr
 | # | Problem | Why it matters | Fix |
 |---|---|---|---|
 | L1 | **"Exceeds 50% cap" counts EWS.** Every state with EWS shows the ⚠️ warning; legend calls 50–60% "At 50% cap" | The Supreme Court held the 10% EWS quota is *outside* the Indra Sawhney 50% ceiling (*Janhit Abhiyan v. Union of India*, Nov 2022). UP (50 + 10 EWS) is not "breaching" anything. | Compute and show two numbers: **base reservation (SC+ST+OBC+other backward categories)** checked against 50%, and EWS separately. |
-| L2 | **Quick Facts "States with >50% reservation: 32"** | Counts the Central Government block, includes EWS, and calls UTs "states" | With L1 fixed and Central excluded the app's *own current numbers* give 14; after data fixes it will change again. Derive all counters from data. |
+| L2 | **Quick Facts "States with >50% reservation: 32"** | Counts the Central Government block, includes EWS, and calls UTs "states" | With L1 fixed and Central excluded the app's *own current numbers* give 14; on **verified** data the answer is **10** (Mizoram unknown). Derive all counters from data. |
 | L3 | Map colour scale is value-laden and barely discriminates | Red-for-high / green-for-low implies a judgement on a politically sensitive topic; because of EWS almost every state lands in the same orange bucket; scale uses rainbow hues that clash with the SC/ST/OBC/EWS category colours | Single-hue sequential, colour-blind-safe palette; default metric = base reservation excl. EWS; let the user switch metric (see F2). Remove the "Category colors" legend from the map (it doesn't describe the map). |
 | L4 | Three sources of truth for Central figures | `CENTRAL` block in JSON, `CENTRAL_RESERVATION` constant, and hard-coded `getCentralCategories()` (with its own population numbers) | Read Central from the JSON only. |
 | L5 | `OTHERS` is stored, not derived; validator tolerance is ±2 | Jharkhand's categories sum to **98%** (stacked bar renders 2% short) and the validator still reports `isValid: true, warnings: []` | Derive Unreserved = 100 − reserved; zero tolerance; sub-categories must sum to parent; run validation in CI. |
@@ -63,7 +63,24 @@ Everything below was reproduced (build run, app driven in headless Chromium, scr
 
 See **[`DATA_AUDIT.md`](./DATA_AUDIT.md)** for every jurisdiction with app-vs-verified tables and sources.
 
-<!-- DATA_SUMMARY -->
+All 37 entries were checked twice: once by regional researchers, then by independent skeptics who tried to refute every correction, with a third arbiter on each disagreement.
+
+| Verdict | Count | Which |
+|---|---|---|
+| Correct | 5 | Central, Delhi, Punjab, UP, Uttarakhand |
+| Minor issues | 13 | AP, Arunachal, Goa, Gujarat, Haryana, Jharkhand, MP, Manipur, Nagaland, Tamil Nadu, Telangana, Chandigarh, Ladakh |
+| **Wrong** | **18** | Assam, Bihar, Chhattisgarh, Himachal, Karnataka, Kerala, Maharashtra, Meghalaya, Odisha, Rajasthan, Sikkim, Tripura, West Bengal, A&N, DNH&DD, J&K, Lakshadweep, Puducherry |
+| Unverifiable | 1 | Mizoram |
+
+**The map's headline number is wrong for 18 of 36 States/UTs.** The biggest misses: Lakshadweep 100 → 55, Maharashtra 49 → 72, Sikkim 66 → ~88, Karnataka 66 → 50 (HC ruling of 12 Oct 2026), J&K 46 → 60, Chhattisgarh 69 → 58, Odisha 61 → 50, Tripura 60 → 48, West Bengal 55 → 45 (May 2026 notification), Assam 59 → 49.
+
+Root causes (each needs a process fix, not just a data fix):
+1. **Central figures used as state figures** — the DoPT table for *central* posts recruited locally was copied in for Tripura, Sikkim and probably Himachal.
+2. **EWS assumed everywhere** — Karnataka, Chhattisgarh, Odisha, Tripura, Sikkim, Assam (suspended) and probably Manipur don't apply it to state jobs.
+3. **The model can't hold real categories** — Maharashtra VJNT/SBC/SEBC, Rajasthan MBC, Bihar BC-women, J&K RBA/ALC, Ladakh ALC, Sikkim's nine categories, Meghalaya's tribe-wise split, Nagaland's nested Backward-Tribes quota. These silently become "Unreserved".
+4. **Legal changes missed** — Karnataka and MP HC judgments (Oct 2026), West Bengal (May 2026), Arunachal (Aug 2026), plus several pending reviews and bills. Only 3 entries have any `legalStatus`.
+5. **Notes contradict numbers** in at least 8 entries; **39 of 42 source links are bare homepages**; 33 entries share the placeholder date `2024-01-01`.
+6. **Population figures**: SC/ST mostly match Census 2011 (13 corrections listed); **every OBC population figure is an unsourced estimate**.
 
 ---
 
@@ -85,7 +102,10 @@ Ordered so each phase is shippable on its own. Rough effort is for one developer
    - Per-block provenance: `asOf`, `verifiedOn`, `confidence`, and `sources[]` pointing at the specific Act/GO/gazette/judgment — not state homepages.
    - Legal timeline: `history[]` / `proposed` entries for enacted-but-not-in-force regimes (Bihar 65%, Jharkhand 77%, Chhattisgarh 76%, MP OBC 27%, Telangana 42% BC, etc.), so the UI can show "in force: X% — enacted/proposed: Y% (status)".
    - Population: tag the source per figure (Census 2011 for SC/ST; state caste survey where one exists; otherwise show "no official data" instead of an unsourced estimate).
-2. **Apply the corrections** in `DATA_AUDIT.md`, highest-impact first (wrong totals → missing categories → legal status → notes text → sources).
+   - Variants per block for rates that differ by post class or region (Himachal Class I/II vs III/IV, Haryana Group A/B vs C/D, DNH vs Daman & Diu, UT all-India vs local posts) — see `DATA_AUDIT.md` §3.
+   - Shared and nested quotas (Meghalaya's 5% shared by SCs and other STs; Nagaland's Backward Tribes inside ST).
+2. **Apply the corrections** in `DATA_AUDIT.md`, highest-impact first (wrong totals → missing categories → legal status → notes text → sources). Work through its §6 re-check list first — Karnataka and MP changed in October 2026.
+   - Rule for contributors: a state's figures must come from *that state's* instrument (Act, GO, PSC advertisement), never from the DoPT table for central posts — except for UTs without a legislature, where that table *is* the rule.
 3. **Validation as a test**: zero-tolerance sums, sub-categories = parent, every block has ≥1 specific source and an `asOf` date; run in CI. Add a JSON Schema for the data file.
 4. Single source of truth for Central figures. (L4)
 5. Add a visible "Last verified" date per state and a site-wide data changelog.
@@ -115,5 +135,6 @@ U1–U10 above, plus the Quick-Facts/legend logic (L2, L3). Add a Playwright smo
 ## 5. Suggested first PRs
 1. **"Fix install, shrink bundle, delete dead files"** — Phase 0. Low risk, big win.
 2. **"Correct the 50% cap logic and Quick Facts"** — L1, L2, L3. Small code change that stops the app making a legally wrong claim on every page.
-3. **"Data corrections, batch 1"** — the WRONG-verdict states from the audit, each with specific sources.
-4. **"UI bug fixes"** — U1–U8.
+3. **"Data model v2"** — open-ended categories, derived Unreserved, variants, legal status/events, provenance fields, strict validation test.
+4. **"Data corrections, batch 1"** — the 18 WRONG-verdict entries from the audit, each with specific sources; then batch 2 for the minor issues and population fixes.
+5. **"UI bug fixes"** — U1–U8.
