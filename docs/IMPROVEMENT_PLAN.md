@@ -1,0 +1,144 @@
+# India Reserved — Audit & Improvement Plan
+
+_Audit date: 22 Oct 2026. Companion document: [`DATA_AUDIT.md`](./DATA_AUDIT.md) (state-by-state data verification with sources)._
+
+> **Status (22 Oct 2026):** Phase 0 and the 50% ceiling fix (L1, L2) are done, and the dead files are removed from the live `gh-pages` branch (the new build itself is not deployed yet). Deviations: the map is bundled rather than lazy-loaded — at 19 KB gzipped a separate fetch only added a failure mode; B8 has no link-preview image yet (`og:image` needs an absolute URL). The UI now calls 50% a *general rule* with exceptions, rather than flagging states as breaching it. Next: Phase 1 (data model + corrections).
+
+## 1. What the project is today
+
+A static React 19 + TypeScript + Vite + Tailwind v4 single-page app. One screen:
+
+- **Map** (`src/components/IndiaMap.tsx`, `react-simple-maps`) — 36 States/UTs coloured by *total* vertical reservation (SC + ST + OBC + EWS) in state-government jobs.
+- **Sidebar** — overview card, Central Government reference card, "Quick Facts"; clicking a state swaps in `StateDetail` (summary tiles, stacked bar, vs-Central comparison, table with expandable sub-categories, notes, legal-status banner, source links).
+- **Search** (`SearchDropdown.tsx`) grouped by region.
+- **Data** — one hand-written JSON file, `src/data/reservationData.json` (37 jurisdictions incl. "CENTRAL", one block each — `STATE_SERVICES`, or `CENTRAL_SERVICES` for Central), typed by `src/types/index.ts`. Validation helpers exist in `src/utils/validation.ts` but are never executed.
+
+The idea and the information architecture are good, and the TypeScript data model is a sensible base. The problems are (a) the data itself, (b) a few framing choices that make the app say legally wrong things, and (c) shipping/UX bugs.
+
+---
+
+## 2. Verified problems — code, build and UX
+
+Everything below was reproduced (build run, app driven in headless Chromium, screenshots taken).
+
+### 2.1 Install / build / deploy
+
+| # | Problem | Evidence | Fix |
+|---|---|---|---|
+| B1 | **`npm install` / `npm ci` fails on a fresh clone** | `ERESOLVE`: `react-simple-maps@3.0.0` peer-requires React ≤ 18; project uses React 19 | Upgrade to `react-simple-maps@^5` (peer range includes 19.x, ships its own types, uses d3 v3) and delete `src/types/react-simple-maps.d.ts`. **Not a drop-in:** v5's `Geography` has no `style={{default, hover, pressed}}` API (style is passed straight to the `<path>`), so `IndiaMap.tsx` must be ported — set `fill` per path, move hover/focus/selected styling to CSS, type the data as a GeoJSON `FeatureCollection`. A typecheck against v5 gives 4 errors in `IndiaMap.tsx`. Stop-gap until then: an `.npmrc` with `legacy-peer-deps=true`. |
+| B2 | Known vulnerabilities | Production deps: 1 high (`d3-color` ReDoS via react-simple-maps 3 → d3 v2). Full `npm audit`: 16 (12 high), mostly the dev toolchain (vite 7.3.0, rollup, postcss…) | B1 fixes the production one; `npm audit fix` / bump vite for the rest. |
+| B3 | **Deployed site is 22 MB** | `dist/` contains `public/india-enhanced.json` (20 MB), `india.json` (480 KB) — neither is used | Delete them (see B5). |
+| B4 | **1.5 MB JS bundle** (575 KB gzip) | `src/data/simplemaps_in.json` (3 MB, 30k points) is imported into the bundle | Simplify to TopoJSON with mapshaper: tested — 554 KB gzip → ~10–20 KB gzip with no visible loss at this zoom. Load it with `fetch` or a dynamic import. |
+| B5 | Dead / broken files | `public/india-states.json`, `india-states-new.geojson`, `india-composite.geojson` each contain the text `404: Not Found`; `india-enhanced.json` contains **hand-drawn approximate polygons for "PoK" and "Aksai Chin"** (from `scripts/enhanceGeoJSON.cjs`) and is publicly downloadable from the live site; `App.css`, `assets/react.svg` are Vite template leftovers (`public/vite.svg` is the current favicon — replace it in the same PR, see B8) | Delete all of them plus `scripts/enhanceGeoJSON.cjs`. The map actually used (simplemaps) already depicts India's official boundary (Ladakh incl. Gilgit-Baltistan & Aksai Chin; J&K incl. PoK) — keep that property in any replacement, and add an attribution/boundary note. |
+| B6 | Unused dependencies | `recharts`, `prop-types` are never imported | Remove (`prop-types` is a peer of react-simple-maps 3, so drop it together with B1). |
+| B7 | README out of date | Mentions an `.htaccess` "included in this repo" (it isn't, and there's no client-side routing) | Rewrite run/deploy section. |
+| B8 | No `<title>`/meta | `index.html` title is `indiareservation`, Vite favicon, no description / Open Graph tags | Proper title, description, OG image, favicon. |
+
+### 2.2 Things the app states that are wrong (logic, not data)
+
+| # | Problem | Why it matters | Fix |
+|---|---|---|---|
+| L1 | **"Exceeds 50% cap" counts EWS.** Any state whose SC+ST+OBC+EWS total is above 50 shows the ⚠️ warning — including 8 that are exactly 50% + 10% EWS (UP, AP, HP, MP, Manipur, Tripura, Puducherry, Jharkhand); legend calls 50–60% "At 50% cap" | The Supreme Court held the 10% EWS quota is *outside* the Indra Sawhney 50% ceiling (*Janhit Abhiyan v. Union of India*, Nov 2022). UP (50 + 10 EWS) is not "breaching" anything. | Compute and show two numbers: **base reservation (SC+ST+OBC+other backward categories)** checked against 50%, and EWS separately. |
+| L2 | **Quick Facts "States with >50% reservation: 32"** | Counts the Central Government block, includes EWS, and calls UTs "states" | With L1 fixed and Central excluded the app's *own current numbers* give 14; on **verified** data the answer is **10** (Mizoram unknown). Derive all counters from data. |
+| L3 | Map colour scale is value-laden and barely discriminates | Red-for-high / green-for-low implies a judgement on a politically sensitive topic; EWS pushes 15 of 36 into the same orange 60–70 band (8 of them exactly 50 + 10) and the blue band is empty; scale uses rainbow hues that clash with the SC/ST/OBC/EWS category colours | Single-hue sequential, colour-blind-safe palette; default metric = base reservation excl. EWS; let the user switch metric (see F2). Remove the "Category colors" legend from the map (it doesn't describe the map). |
+| L4 | Three sources of truth for Central figures | `CENTRAL` block in JSON, `CENTRAL_RESERVATION` constant, and hard-coded `getCentralCategories()` (with its own population numbers) | Read Central from the JSON only. |
+| L5 | `OTHERS` is stored, not derived; validator tolerance is ±2 | Jharkhand's categories sum to **98%** (stacked bar renders 2% short) and the validator still reports `isValid: true, warnings: []` | Derive Unreserved = 100 − reserved; zero tolerance; sub-categories must sum to parent; run validation in CI. |
+| L6 | **The UI never says these are job quotas** | Header says only "Vertical reservation … across States and UTs"; the state bar is labelled **"Seat Distribution"** (`StateDetail.tsx:103`), which reads as admission seats. Job and education quotas often differ (Odisha, Punjab, Assam EWS…) | State the scope ("State government posts — direct recruitment") in header, state panel and tooltip; rename to "Share of posts"; show the block `context`. |
+
+### 2.3 UI bugs (all reproduced)
+
+| # | Bug | Cause | Fix |
+|---|---|---|---|
+| U1 | **Hover tooltip appears ~110 px below the cursor** (on a different state) | `.tooltip` is `position:absolute` inside a relative container but positioned with viewport `clientX/Y` | `position: fixed`, or subtract the container's `getBoundingClientRect()`. |
+| U2 | **Search icon overlaps the placeholder text** | Computed `padding-left` is 16px, not `pl-12`'s 48px: un-layered CSS in `index.css` beats Tailwind v4 utilities (which live in `@layer utilities`) | Wrap custom classes in `@layer components { … }`. The same bug is already visible elsewhere: `.data-table th { text-align:left }` beats `text-right` on the numeric headers; `.region-badge` overrides the blue badge in `CentralCard`; `.glass-card`'s border beats `hover:border-white/30`. |
+| U3 | **Sub-category descriptions on leaf rows never display** — 31 of 32 (e.g. Bihar EBC "Includes 108+…", AP BC-B "Yadava, Golla…") | Description row renders only when `isExpanded`, but leaf rows can't expand | Show description inline / as a tooltip / allow expand when `description` exists. |
+| U4 | **Mobile: the map is unusable** | Both absolutely-positioned legends cover the (small) map at 390 px width; sidebar `max-h-[calc(100vh-200px)]` clips "Quick Facts" under the footer | Legends below the map / collapsible on small screens; detail panel as a bottom sheet; remove nested scroll containers (`StateDetail` also has `max-h-[90vh]`). |
+| U5 | **Small UTs are nearly unclickable** | Measured hit areas: Chandigarh **5×6 px**, Delhi 13×14 px, Puducherry ~16×22 px; zoom exists but has no controls/hint | Zoom buttons + callout markers/insets for Delhi, Chandigarh, Puducherry, Lakshadweep, DNH&DD; plus a list/table view (F3). |
+| U6 | Map not keyboard/screen-reader accessible | Paths are focusable (react-simple-maps sets `tabIndex=0`) but have no role or accessible name, and Enter/Space do nothing. Keyboard users first tab through all 37 search results, because the dropdown opens on focus and never closes on blur | `role="button"`, `aria-label="Bihar, 60% reserved"`, Enter/Space handler; close the dropdown on blur/Esc. |
+| U7 | Selected state shows a white rectangle, and the intended gold outline never appears | Browser default focus outline on the SVG `<path>`; react-simple-maps' inline `style` stroke overrides `.map-state.selected` / `:hover` in `index.css` | Custom `:focus-visible` style; move fill/stroke to CSS (part of the v5 port) so `.selected` applies. |
+| U8 | Search lacks keyboard support | No ↑/↓/Enter/Esc, no `role="combobox"`/`listbox`; "UP", "MP", "J&K", "Orissa" find nothing | Proper combobox + alias list. |
+| U9 | Comparison chart legend swatch always blue | Hard-coded `bg-blue-500` | Neutral swatch or per-category. |
+| U10 | Minor | Close button has no `aria-label`; emoji used as icons; `Inter` font referenced but never loaded; 2-space vs 4-space indentation mixed; `SubCategoryBreakdown` passes `"OBC" as CategoryCode` for every nested level; "Last updated" (`StateDetail.tsx:67`) parses a date-only string as UTC, so viewers west of UTC see the previous day | Tidy-up; format dates with `timeZone: 'Asia/Kolkata'`. |
+
+---
+
+## 3. Data problems — summary
+
+See **[`DATA_AUDIT.md`](./DATA_AUDIT.md)** for every jurisdiction with app-vs-verified tables and sources.
+
+All 37 entries were checked twice: once by regional researchers, then by independent skeptics who tried to refute every correction, with a third arbiter on each disagreement.
+
+| Verdict | Count | Which |
+|---|---|---|
+| Correct | 5 | Central, Delhi, Punjab, UP, Uttarakhand |
+| Minor issues | 13 | AP, Arunachal, Goa, Gujarat, Haryana, Jharkhand, MP, Manipur, Nagaland, Tamil Nadu, Telangana, Chandigarh, Ladakh |
+| **Wrong** | **18** | Assam, Bihar, Chhattisgarh, Himachal, Karnataka, Kerala, Maharashtra, Meghalaya, Odisha, Rajasthan, Sikkim, Tripura, West Bengal, A&N, DNH&DD, J&K, Lakshadweep, Puducherry |
+| Unverified | 1 | Mizoram |
+
+**The map's headline number is wrong for 18 of 36 States/UTs.** The biggest misses: Lakshadweep 100 → 55, Maharashtra 49 → 72, Sikkim 66 → ~88, Karnataka 66 → 50 (HC ruling of 12 Oct 2026), J&K 46 → 60, Chhattisgarh 69 → 58, Odisha 61 → 50, Tripura 60 → 48, West Bengal 55 → 45 (May 2026 notification), Assam 59 → 49.
+
+Root causes (each needs a process fix, not just a data fix):
+1. **Central figures used as state figures** — the DoPT table for *central* posts recruited locally was copied in for Tripura, Sikkim and probably Himachal.
+2. **EWS assumed everywhere** — Karnataka, Chhattisgarh, Odisha, Tripura, Sikkim, Assam (suspended) and probably Manipur don't apply it to state jobs.
+3. **The model can't hold real categories** — Maharashtra VJNT/SBC/SEBC, Rajasthan MBC, Bihar BC-women, J&K RBA/ALC, Ladakh ALC, Sikkim's nine categories, Meghalaya's tribe-wise split, Nagaland's nested Backward-Tribes quota. These silently become "Unreserved".
+4. **Legal changes missed** — Karnataka and MP HC judgments (Oct 2026), West Bengal (May 2026), Arunachal (Aug 2026), plus several pending reviews and bills. Only 2 entries (Bihar, Jharkhand) have any `legalStatus`.
+5. **Notes contradict numbers** in at least 8 entries; **39 of 42 source links are bare homepages**; 33 entries share the placeholder date `2024-01-01`.
+6. **Population figures**: SC/ST mostly match Census 2011 (13 corrections listed); **every OBC population figure is an unsourced estimate**.
+
+---
+
+## 4. The plan
+
+Ordered so each phase is shippable on its own. Rough effort is for one developer.
+
+### Phase 0 — Make it install, build and ship small (½–1 day)
+1. Upgrade `react-simple-maps` → v5 **and port `IndiaMap.tsx`** to its API; drop the local `.d.ts`; remove `recharts`, `prop-types`; `npm audit fix` / bump vite. (B1, B2, B6)
+2. Delete dead files in `public/`, `scripts/enhanceGeoJSON.cjs`, `App.css`, template assets. (B3, B5)
+3. Convert the map to simplified TopoJSON, load it lazily. Target: < 150 KB JS gzipped (≈370 KB raw remains even with the map removed, until the data JSON is lazy-loaded too), < 1 MB total `dist/`. (B4)
+4. Fix `index.html` metadata and README. (B7, B8)
+
+### Phase 1 — Make the data trustworthy (2–4 days; the most important phase)
+1. **Extend the data model** so real-world quotas fit:
+   - Allow additional vertical categories beyond SC/ST/OBC/EWS (Maharashtra VJ/NT/SBC/SEBC-Maratha, Rajasthan MBC, J&K RBA & ALC/IB, Ladakh ALC, NE tribe-specific quotas). Simplest: an `OTHER_BACKWARD` group with labelled sub-categories, or make `CategoryCode` open-ended with a `group` field.
+   - Derive `OTHERS`/Unreserved instead of storing it.
+   - Add `baseReservation` (excl. EWS) as a computed value and use it for the 50% check. (L1)
+   - Per-block provenance: `asOf`, `verifiedOn`, `confidence`, and `sources[]` pointing at the specific Act/GO/gazette/judgment — not state homepages.
+   - Legal timeline: `history[]` / `proposed` entries for enacted-but-not-in-force regimes (Bihar 65%, Jharkhand 77%, Chhattisgarh 76%, MP OBC 27%, Telangana 42% BC, etc.), so the UI can show "in force: X% — enacted/proposed: Y% (status)".
+   - Population: tag the source per figure (Census 2011 for SC/ST; state caste survey where one exists; otherwise show "no official data" instead of an unsourced estimate).
+   - Variants per block for rates that differ by post class or region (Himachal Class I/II vs III/IV, Haryana Group A/B vs C/D, DNH vs Daman & Diu, UT all-India vs local posts) — see `DATA_AUDIT.md` §3.
+   - Shared and nested quotas (Meghalaya's 5% shared by SCs and other STs; Nagaland's Backward Tribes inside ST).
+2. **Apply the corrections** in `DATA_AUDIT.md`, highest-impact first (wrong totals → missing categories → legal status → notes text → sources). Work through its §6 re-check list first — Karnataka and MP changed in October 2026.
+   - Rewrite notes that contradict the new 50%-rule wording: Andhra Pradesh ("exceeds 50% at approximately 60%" — it is 50% + 10% EWS), Madhya Pradesh, Maharashtra, Chhattisgarh, Karnataka, Telangana, Gujarat, Rajasthan, Ladakh (ALC stored as OBC).
+   - Rule for contributors: a state's figures must come from *that state's* instrument (Act, GO, PSC advertisement), never from the DoPT table for central posts — except for UTs without a legislature, where that table *is* the rule.
+3. **Validation as a test**: zero-tolerance sums, sub-categories = parent, every block has ≥1 specific source and an `asOf` date; run in CI. Add a JSON Schema for the data file.
+4. Single source of truth for Central figures. (L4)
+5. Add a visible "Last verified" date per state and a site-wide data changelog.
+
+### Phase 2 — Fix the UI bugs (1–2 days)
+U1–U10 above, plus the Quick-Facts/legend logic and scope labelling (L2, L3, L6). Add a Playwright smoke test that hovers, clicks, searches and checks mobile layout so these don't regress.
+
+### Phase 3 — Make it genuinely more useful (pick by priority)
+- **F1 Shareable URLs** — `?state=BIHAR` (and back-button support) so people can link a state.
+- **F2 Map metric switcher** — Base (excl. EWS) · Total · SC · ST · OBC · EWS · "reservation vs population share" gap; neutral sequential palette.
+- **F3 All-states table** — sortable/filterable, with CSV/JSON download of the dataset (add a data licence, e.g. CC BY 4.0).
+- **F4 Compare** — two states side-by-side, or state vs Central.
+- **F5 Timeline per state** — quota changes and court cases over time (Indra Sawhney 1992 → 103rd Amendment 2019 → Janhit Abhiyan 2022 → state-specific events).
+- **F6 "Report an error" link** per state → pre-filled GitHub issue; contributor guide for data updates.
+- **F7 Explainer page** — vertical vs horizontal reservation, the 50% rule and its exceptions, 9th Schedule, Article 16(4)/15(4), sub-classification (*State of Punjab v. Davinder Singh*, 2024).
+- **F8 Scope extensions already anticipated by the types** — horizontal reservation (women, PwD, ex-servicemen) and education (`STATE_HIGHER_EDU`), which often differ from job quotas.
+- **F9 Hindi (and regional) language support; light theme; print view.**
+
+### Phase 4 — Engineering hygiene (ongoing)
+- Vitest for `dataHelpers`/validation; Playwright smoke test; GitHub Actions running lint → typecheck → test → build on every PR.
+- Prettier + consistent indentation.
+- Deploy pipeline (GitHub Pages / Cloudflare Pages / Netlify) from `main`.
+- Confirm simplemaps licence/attribution terms and credit the map source in the footer.
+
+---
+
+## 5. Suggested first PRs
+1. **"Fix install, shrink bundle, delete dead files"** — Phase 0. Big win; the only non-trivial part is porting `IndiaMap.tsx` to react-simple-maps v5 (or ship the `.npmrc` stop-gap first).
+2. **"Correct the 50% cap logic, Quick Facts and scope labels"** — L1, L2, L3, L6. Small code change that stops the app making a legally wrong claim on every page.
+3. **"Data model v2"** — open-ended categories, derived Unreserved, variants, legal status/events, provenance fields, strict validation test.
+4. **"Data corrections, batch 1"** — the 18 WRONG-verdict entries from the audit, each with specific sources; then batch 2 for the minor issues and population fixes.
+5. **"UI bug fixes"** — U1–U8.

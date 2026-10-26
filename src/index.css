@@ -60,23 +60,39 @@ body {
 .border-ews { border-color: var(--color-ews); }
 .border-others { border-color: var(--color-others); }
 
-/* Map state styles */
+/* Map state styles (fill is set per state as an attribute) */
 .map-state {
   cursor: pointer;
   transition: all 0.2s ease;
-  stroke: rgba(255, 255, 255, 0.3);
+  stroke: #1f2937;
   stroke-width: 0.5;
+  opacity: 0.9;
+}
+
+/* No focus box on mouse click; keep a visible ring for keyboard focus */
+.map-state:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .map-state:hover {
   filter: brightness(1.2);
-  stroke: rgba(255, 255, 255, 0.8);
+  stroke: #fff;
   stroke-width: 1;
+  opacity: 1;
+}
+
+.map-state:focus-visible {
+  stroke: #fff;
+  stroke-width: 1.5;
+  opacity: 1;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .map-state.selected {
   stroke: #fbbf24;
   stroke-width: 2;
+  opacity: 1;
   filter: brightness(1.3);
 }
 

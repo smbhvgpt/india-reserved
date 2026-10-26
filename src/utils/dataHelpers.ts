@@ -41,6 +41,24 @@ export function calculateTotalReservation(categories: VerticalCategoryShare[]): 
         .reduce((sum, c) => sum + c.reservationPercent, 0);
 }
 
+// General ceiling on backward-class reservation (SC, ST, OBC and similar
+// categories) set in Indra Sawhney v. Union of India (1992). It is a general
+// rule, not an absolute bar: the Court allowed exceptions in extraordinary
+// situations, and laws in the 9th Schedule (e.g. Tamil Nadu's) are protected.
+export const RESERVATION_CEILING = 50;
+
+// Calculate reservation counted against the 50% ceiling: every reserved
+// category except EWS, which sits outside it (Janhit Abhiyan v. Union of India, 2022).
+export function calculateBaseReservation(categories: VerticalCategoryShare[]): number {
+    return categories
+        .filter(c => c.code !== "OTHERS" && c.code !== "EWS")
+        .reduce((sum, c) => sum + c.reservationPercent, 0);
+}
+
+export function exceedsReservationCeiling(categories: VerticalCategoryShare[]): boolean {
+    return calculateBaseReservation(categories) > RESERVATION_CEILING;
+}
+
 // Get categories sorted by standard order
 export function getSortedCategories(categories: VerticalCategoryShare[]): VerticalCategoryShare[] {
     return [...categories].sort(
@@ -114,11 +132,12 @@ export function formatPercent(value: number | null | undefined): string {
     return `${value.toFixed(1)}%`;
 }
 
-// Get jurisdictions exceeding 50% reservation
+// Get States/UTs whose reservation excluding EWS exceeds the 50% ceiling
 export function getJurisdictionsExceeding50(data: ReservationData): Jurisdiction[] {
     return data.jurisdictions.filter(j => {
+        if (j.type === "CENTRAL") return false;
         const block = getReservationBlock(data, j.id);
         if (!block) return false;
-        return calculateTotalReservation(block.categories) > 50;
+        return exceedsReservationCeiling(block.categories);
     });
 }

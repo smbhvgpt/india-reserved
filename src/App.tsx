@@ -2,9 +2,14 @@ import { useState } from 'react';
 import { IndiaMap, StateDetail, CentralCard, SearchDropdown, Footer } from './components';
 import reservationData from './data/reservationData.json';
 import type { ReservationData } from './types';
+import { getJurisdictionsExceeding50 } from './utils/dataHelpers';
 
 // Cast the imported JSON to our type
 const data = reservationData as ReservationData;
+
+const stateCount = data.jurisdictions.filter(j => j.type === 'STATE').length;
+const utCount = data.jurisdictions.filter(j => j.type === 'UT').length;
+const aboveCeilingCount = getJurisdictionsExceeding50(data).length;
 
 function App() {
   const [selectedState, setSelectedState] = useState<string | null>(null);
@@ -87,7 +92,7 @@ function App() {
                 <div className="space-y-2 text-sm text-gray-300">
                   <div className="flex items-center gap-2">
                     <span className="text-green-400">✓</span>
-                    <span>28 States + 8 Union Territories</span>
+                    <span>{stateCount} States + {utCount} Union Territories</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-green-400">✓</span>
@@ -119,15 +124,8 @@ function App() {
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-400">States with &gt;50% reservation</span>
-                    <span className="text-white font-medium">
-                      {data.verticalReservationBlocks.filter(b => {
-                        const total = b.categories
-                          .filter(c => c.code !== 'OTHERS')
-                          .reduce((sum, c) => sum + c.reservationPercent, 0);
-                        return total > 50;
-                      }).length}
-                    </span>
+                    <span className="text-gray-400">Above 50% general rule (excl. EWS)</span>
+                    <span className="text-white font-medium">{aboveCeilingCount}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">Highest ST reservation</span>
@@ -139,9 +137,7 @@ function App() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">Total jurisdictions</span>
-                    <span className="text-white font-medium">
-                      {data.jurisdictions.length - 1} {/* Exclude Central */}
-                    </span>
+                    <span className="text-white font-medium">{stateCount + utCount}</span>
                   </div>
                 </div>
               </div>
